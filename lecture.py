@@ -10,12 +10,12 @@ def char2utf8(input_character):
             pass
         else:
             y = input_binary_without_0b[-12:-6]
-            if len(input_binary_without_0b) <= 16:
-                x = input_binary_without_0b[-16:-12]
-                input_utf8 = '0b1110{:0>4}10{}10{}'.format(x, y, z)
-                return hex(int(input_utf8, 2))
-            else:
-                pass
+            return hex(int(
+                '0b1110{:0>4}10{}10{}'.format(
+                    input_binary_without_0b[-16:-12],
+                    y,
+                    z) if len(input_binary_without_0b) <= 16 else None,
+                2))
 
 
 print(char2utf8('台'))
