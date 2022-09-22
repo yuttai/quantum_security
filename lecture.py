@@ -38,3 +38,18 @@ def div_mod(b, d, n):
 
 print(div_mod(10, 5, 91))
 print(div_mod(82, 29, 91))
+
+
+def div_mod_while(b, d, n):
+    b_j = b
+    b_d = 1
+    while d:
+        if d % 2:
+            b_d = (b_d * b_j) % n
+        b_j = (b_j ** 2) % n
+        d //= 2
+    return b_d
+
+
+print(div_mod_while(10, 5, 91))
+print(div_mod_while(82, 29, 91))
