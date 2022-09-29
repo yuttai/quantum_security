@@ -24,7 +24,7 @@ print(char2utf8(' '))
 print(char2utf8(' ') == '0x20')
 
 
-def div_mod(b, d, n):
+def exp_mod(b, d, n):
     d_binary = bin(d)
     d_binary_without_0b = d_binary[2:]
     b_j = b
@@ -36,11 +36,11 @@ def div_mod(b, d, n):
     return b_d
 
 
-print(div_mod(10, 5, 91))
-print(div_mod(82, 29, 91))
+print(exp_mod(10, 5, 91))
+print(exp_mod(82, 29, 91))
 
 
-def div_mod_while(b, d, n):
+def exp_mod_while(b, d, n):
     b_j = b
     b_d = 1
     while d:
@@ -51,5 +51,23 @@ def div_mod_while(b, d, n):
     return b_d
 
 
-print(div_mod_while(10, 5, 91))
-print(div_mod_while(82, 29, 91))
+print(exp_mod_while(10, 5, 91))
+print(exp_mod_while(82, 29, 91))
+
+
+def gcd_while(a, b):
+    if a < b:
+        return gcd_while(b, a)
+    quotient_remainder_list = [divmod(a, b)]
+    while quotient_remainder_list[-1][1] != 0:
+        quotient_remainder_list.append(divmod(
+            quotient_remainder_list[-2][1] if len(quotient_remainder_list) > 1 else b,
+            quotient_remainder_list[-1][1]))
+    return \
+        quotient_remainder_list[-2][1] if len(quotient_remainder_list) > 1 else \
+        b
+
+
+print(gcd_while(72, 5))
+print(gcd_while(5, 72))
+
