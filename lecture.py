@@ -68,9 +68,12 @@ def get_quotient_remainder_list(a, b):
 def gcd_while(a, b):
     if a < b:
         return gcd_while(b, a)
-    quotient_remainder_list = get_quotient_remainder_list(a, b)
+    remainders = [a % b]
+    while remainders[-1] != 0:
+        remainders.append(
+            (remainders[-2] if len(remainders) > 1 else b) % remainders[-1])
     return \
-        quotient_remainder_list[-2][1] if len(quotient_remainder_list) > 1 else \
+        remainders[-2] if len(remainders) > 1 else \
         b
 
 
